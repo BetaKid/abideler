@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AZƏRBAYCANIN TARİXİ ABİDƏLƏRİ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <style>
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(160deg, var(--blue-dark) 0%, var(--blue-mid) 60%, var(--blue-light) 100%);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* decorative circle blur */
+    header::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(41,128,185,.25) 0%, transparent 70%);
+      top: -150px; right: -100px;
+      pointer-events: none;
+    }
+
+    /* Azerbaijan flag stripe bar */
+    .flag-stripe {
+      display: flex;
+      height: 6px;
+    }
+    .flag-stripe span {
+      flex: 1;
+    }
+    .flag-stripe .s-blue  { background: #0092bc; }
+    .flag-stripe .s-red   { background: #e8112d; }
+    .flag-stripe .s-green { background: #00b050; }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      padding: 40px 24px 36px;
+      position: relative;
+      z-index: 1;
+      flex-wrap: wrap;
+    }
+
+    /* ── FLAG IMG ── */
+    .flag-img {
+      flex-shrink: 0;
+      width: 108px;
+      height: 54px;
+      object-fit: cover;
+      border-radius: 4px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.5);
+    }
+
+    /* ── EMBLEM IMG ── */
+    .emblem-img {
+      flex-shrink: 0;
+      width: 72px;
+      height: auto;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,.6));
+    }
+
+    .header-text {
+      text-align: center;
+    }
+    .header-text h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      font-weight: 900;
+      letter-spacing: .04em;
+      line-height: 1.15;
+      text-shadow: 0 2px 8px rgba(0,0,0,.4);
+    }
+    .header-text p {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      color: var(--gold-light);
+      font-style: italic;
+      letter-spacing: .06em;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--blue-dark);
+      text-align: center;
+      padding: 12px;
+      border-bottom: 2px solid var(--gold);
+    }
+    nav a {
+      color: var(--gold-light);
+      text-decoration: none;
+      font-size: 0.88rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--white); }
+
+    /* ── GRID ── */
+    .grid {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      max-width: 800px;
+      margin: 48px auto;
+      padding: 0 24px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(13,59,110,.08);
+      transition: transform .25s ease, box-shadow .25s ease;
+      display: flex;
+      flex-direction: row;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 32px rgba(13,59,110,.18);
+    }
+    .card img {
+      width: 260px;
+      min-width: 260px;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+    .card:hover img { transform: scale(1.04); }
+    .card-body {
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .card-body .tag {
+      font-size: 0.72rem;
+      color: var(--blue-sky);
+      margin: 0 0 6px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-weight: 600;
+    }
+    .card-body h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0 0 14px;
+      color: var(--blue-dark);
+      line-height: 1.3;
+    }
+    .card-body a {
+      display: inline-block;
+      background: var(--blue-mid);
+      color: var(--white);
+      text-decoration: none;
+      padding: 8px 18px;
+      font-size: 0.82rem;
+      border-radius: 3px;
+      letter-spacing: .05em;
+      transition: background .2s;
+    }
+    .card-body a:hover { background: var(--gold); }
+
+    /* ── FOOTER ── */
+    @media (max-width: 580px) {
+      .card { flex-direction: column; }
+      .card img { width: 100%; min-width: unset; height: 200px; }
+    }
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: var(--blue-dark);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: 20px;
+    }
+    footer::before {
+      content: '';
+      display: block;
+      height: 4px;
+      background: linear-gradient(90deg, #0092bc 33%, #e8112d 33% 66%, #00b050 66%);
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Azerbaijan flag colour stripe -->
+<div class="flag-stripe">
+  <span class="s-blue"></span>
+  <span class="s-red"></span>
+  <span class="s-green"></span>
+</div>
+
+<header>
+  <div class="header-inner">
+
+    <!-- Azerbaijan Flag -->
+    <img class="flag-img"
+         src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Azerbaijan.svg"
+         alt="Azərbaycan Bayrağı">
+
+    <div class="header-text">
+      <h1>AZƏRBAYCANIN TARİXİ ABİDƏLƏRİ</h1>
+    </div>
+
+    <!-- Azerbaijan Coat of Arms -->
+    <img class="emblem-img"
+         src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Emblem_of_Azerbaijan.svg/960px-Emblem_of_Azerbaijan.svg.png"
+         alt="Azərbaycan Gerbi">
+
+  </div>
+</header>
+
+<nav>
+  <a href="index.html">&#8962; Ana Səhifə</a>
+</nav>
+
+<div class="grid">
+
+  <div class="card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Q%C4%B1z_qalas%C4%B1_2013.JPG/1280px-Q%C4%B1z_qalas%C4%B1_2013.JPG" alt="Qız Qalası">
+    <div class="card-body">
+      <p class="tag">Bakı</p>
+      <h2>Qız Qalası</h2>
+      <a href="qiz-qalasi.html">Ətraflı oxu &rarr;</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://portal.azertag.az/sites/default/files/shirvan5.JPG" alt="Şirvanşahlar Sarayı">
+    <div class="card-body">
+      <p class="tag">Bakı</p>
+      <h2>Şirvanşahlar Sarayı</h2>
+      <a href="shirvanshahlar.html">Ətraflı oxu &rarr;</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://unesco.preslib.az/images/site/image009.jpg" alt="Atəşgah">
+    <div class="card-body">
+      <p class="tag">Suraxanı</p>
+      <h2>Atəşgah</h2>
+      <a href="ateshgah.html">Ətraflı oxu &rarr;</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://azertag.az/files/2020/3/1200x630/16056975302319463312_1200x630.jpg" alt="Xudafərin Körpüləri">
+    <div class="card-body">
+      <p class="tag">Cəbrayıl · Araz çayı</p>
+      <h2>Xudafərin Körpüləri</h2>
+      <a href="xudaferin.html">Ətraflı oxu &rarr;</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://citytoursbaku.com/wp-content/uploads/2021/12/Momine-Khatun-tomb-Nakhchivan-1.jpeg" alt="Mömünə Xatun Türbəsi">
+    <div class="card-body">
+      <p class="tag">Naxçıvan</p>
+      <h2>Mömünə Xatun Türbəsi</h2>
+      <a href="momine-xatun.html">Ətraflı oxu &rarr;</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://citytoursbaku.com/wp-content/uploads/2021/01/Alinja-Castle-on-night-.jpg" alt="Əlincə Qalası">
+    <div class="card-body">
+      <p class="tag">Naxçıvan</p>
+      <h2>Əlincə Qalası</h2>
+      <a href="alinja-qalasi.html">Ətraflı oxu &rarr;</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Church%2C_Kish_%28P1090438%29.jpg/960px-Church%2C_Kish_%28P1090438%29.jpg" alt="Kiş Məbədi">
+    <div class="card-body">
+      <p class="tag">Şəki</p>
+      <h2>Kiş Alban Məbədi</h2>
+      <a href="kish-mabedi.html">Ətraflı oxu &rarr;</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Yuxar%C4%B1_G%C3%B6vh%C9%99r_a%C4%9Fa_m%C9%99scidi_2024-c%C3%BC_ilin_aprelind%C9%99.jpg/960px-Yuxar%C4%B1_G%C3%B6vh%C9%99r_a%C4%9Fa_m%C9%99scidi_2024-c%C3%BC_ilin_aprelind%C9%99.jpg" alt="Yuxarı Gövhərağa Məscidi">
+    <div class="card-body">
+      <p class="tag">Şuşa</p>
+      <h2>Yuxarı Gövhərağa Məscidi</h2>
+      <a href="govheraga.html">Ətraflı oxu &rarr;</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>2026, Əli Mehdiyev, 6525a3</p>
+</footer>
+
+</body>
+</html>
